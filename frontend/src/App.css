@@ -1,3 +1,8 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
 .App {
   text-align: center;
 }
@@ -32,7 +37,50 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+ul {
+  list-style: none;
+}
+
+.name {
+  color: white;
+  border-bottom: 1px solid black;
+}
+
+.shop {
+  margin-top: -10px;
+  color: white;
+}
+
+.mainDiv {
+  background-color: rgb(35, 50, 113);
+}
+
+.search {
+  height: 50px;
+}
+
+.menu {
+  height: 50px;
+}
+
+.searchBtn {
+  height: 50px;
+}
+
+.brand {
+  height: 70px;
+  align-items: center;
 }
