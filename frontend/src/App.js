@@ -1,13 +1,14 @@
 
 import './App.css';
 // import Admin from './componnent/AdminLayout';
-import Form from "./componnent/form"
+import Product from "./componnent/Product"
+import React, { useState } from 'react';
 
 
 function App() {
   return (
     <div className="App">
-      <Form />
+      <Product />
     </div>
   );
 }

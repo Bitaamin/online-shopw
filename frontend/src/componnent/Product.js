@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from "axios"
 
-export default function form() {
+export default function Product() {
 
     const init = {
         productName: "",
