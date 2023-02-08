@@ -7,6 +7,8 @@ import Admin from './componnent/Admin';
 import Dashboard from './componnent/Dashboard';
 import Product from './componnent/Product';
 import Users from './componnent/Users';
+import Category from "./componnent/Category"
+import Products from "./componnent/Products"
 
 
 function App() {
@@ -14,13 +16,18 @@ function App() {
     <div className="App">
       <Routes>
         <Route path='/' element={<Nav />} />
+
       </Routes>
       <Routes>
-        <Route exact path='/login' element={<Login />} />
+        <Route path='/login' element={<Login />} />
+
         <Route element={<Admin />}>
+
           <Route path='/admin' element={<Dashboard />} />
-          <Route path='/user' element={< Product />} />
-          <Route path='/product' element={<Users />} />
+          <Route path='/product' element={<Product />} />
+          <Route path='/products' element={<Products />} />
+          <Route path='/user' element={<Users />} />
+          <Route path='/category' element={<Category />} />
         </Route>
       </Routes>
     </div>

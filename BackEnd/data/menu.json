@@ -1,5 +1,9 @@
 [
     {
-        "name": "Bold"
+        "id": "",
+        "name": "Tv",
+        "category": "Elctric",
+        "brand": "Samsung",
+        "price": 1200
     }
 ]

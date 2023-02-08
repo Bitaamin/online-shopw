@@ -1,5 +1,5 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, Link } from 'react-router-dom'
 
 export default function Admin() {
     const logo = require("../images/logo.png")
@@ -25,9 +25,10 @@ export default function Admin() {
                 <div className='row'>
                     <div className='col-md-3'>
                         <div className='list-group'>
-                            <a href='/admin' className='list-group-item list-group-item-action'>Dashboard</a>
-                            <a href='/product' className='list-group-item list-group-item-action'>Product</a>
-                            <a href='/user' className='list-group-item list-group-item-action'>Users</a>
+                            <Link to='/admin' className='list-group-item list-group-item-action'>Dashboard</Link>
+                            <Link to='/product' className='list-group-item list-group-item-action'>Product</Link>
+                            <Link to='/category' className='list-group-item list-group-item-action'>Category</Link>
+                            <Link to='/user' className='list-group-item list-group-item-action'>Users</Link>
                         </div>
                     </div>
                     <div className='col-md-9'>

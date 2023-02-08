@@ -26,7 +26,7 @@ export default function Nav() {
                             <a>Home</a>
                         </li>
                         <li className='m-3 text-light'>
-                            <a>About</a>
+                            <a>Product</a>
                         </li>
                         <li className='m-3 text-light'>
                             <a>Contact</a>
@@ -42,6 +42,6 @@ export default function Nav() {
                     </ul>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
