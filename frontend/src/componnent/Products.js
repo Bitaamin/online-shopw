@@ -1,126 +1,76 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Form from "react-bootstrap/Form"
-<<<<<<< HEAD
 import Button from 'react-bootstrap/Button'
-import navigate from 'react'
-=======
-import Button from "react-bootstrap/Button"
->>>>>>> 1aa5f1ca743b5b25c17217c54a77d4a8f99f2e8e
 import { useNavigate } from 'react-router-dom'
 import axios from "axios"
 
 
 export default function Products() {
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
+    const init = {
+        id: 0,
+        price: 0,
+        productName: "",
+        thumbImage: "",
+        images: "",
+        salePercent: 0,
+        desc: "",
+        createdDate: 0
+    }
+
+    const [product, setProduct] = useState(init)
+
     const onSave = () => {
         axios
-            .post()
+            .post("http://localhost:8000/api/product", product)
+            .then((res) => {
+                if (res.data.result) {
+                    navigate("/product")
+                } else {
+                    alert("Хадгалахад алдаа гарлаа!")
+                }
+            })
     }
+
     return (
         <div>
             <Form className='col-md-4'>
                 <h3 className='text-start'>Product Add</h3>
                 <Form.Group>
                     <Form.Label className='text-start'>Product Name</Form.Label>
-                    <Form.Control />
+                    <Form.Control value={product.productName} onChange={(e) => setProduct({ ...product, productName: e.target.value })} />
                 </Form.Group>
-<<<<<<< HEAD
-            </Form> */}
-            <div className='modal' style={{ display: "block" }}>
-                <div className='modal-dialog'>
-                    <div className='modal-content'>
-                        <div className='modal-header'>
-                            <h3 className='nodal-title'>Add Product</h3>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => }></button>
-                        </div>
-                        <div className='modal-body'>
-                            <form>
-                                <label className='form-label text-start'>ProductName</label>
-                                <input className='form-control' />
-
-                                <label className='form-label'>Price</label>
-                                <input className='form-control' />
-
-                                <label className='form-label'>Brand</label>
-                                <input className='form-control' />
-
-                                <label className='form-label'>Category</label>
-                                <input className='form-select' />
-                            </form>
-                        </div>
-                        <div className='modal-footer'>
-                            <span className='btn btn-danger'>Close</span>
-                            <span className='btn btn-primary'>Save</span>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-=======
                 <Form.Group>
                     <Form.Label>Price</Form.Label>
-                    <Form.Control />
+                    <Form.Control value={product.price} onChange={(e) => setProduct({ ...product, price: e.target.value })} />
                 </Form.Group>
                 <Form.Group>
-                    <Form.Label>Brand</Form.Label>
-                    <Form.Control />
+                    <Form.Label>salePercent</Form.Label>
+                    <Form.Control value={product.salePercent} onChange={(e) => setProduct({ ...product, salePercent: e.target.value })} />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>Description</Form.Label>
+                    <Form.Control value={product.desc} onChange={(e) => setProduct({ ...product, desc: e.target.value })} />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>Date</Form.Label>
+                    <Form.Control value={product.createdDate} onChange={(e) => setProduct({ ...product, createdDate: e.target.value })} />
                 </Form.Group>
                 <Form.Select>
                     <Form.Label>Category</Form.Label>
-                    <Form.Control />
+                    <Form.Control value={product.desc} onChange={(e) => setProduct({ ...product, desc: e.target.value })} />
                 </Form.Select>
-                <Form.Group>
-                    <Form.Label></Form.Label>
-                    <Form.Control type='file' />
+                {/* <Form.Group>
+                    <Form.Label>Thumb Image</Form.Label>
+                    <Form.Control type='file' value={product.thumbImage} onChange={(e) => setProduct({ ...product, thumbImage: e.target.files })} />
                 </Form.Group>
                 <Form.Group>
-                    <Form.Label></Form.Label>
-                    <Form.Control type='file' />
-                </Form.Group>
-                <Button className='btn btn-primary' onClick={onSave()}>Save</Button>
+                    <Form.Label>Images</Form.Label>
+                    <Form.Control type='file' value={product.images} onChange={(e) => setProduct({ ...product, images: e.target.files })} />
+                </Form.Group> */}
+                <Button className='btn btn-primary' onClick={onSave}>Save</Button>
                 <Button className='btn btn-danger'>Close</Button>
-
-            </Form>
->>>>>>> 1aa5f1ca743b5b25c17217c54a77d4a8f99f2e8e
+            </Form >
         </div >
     )
 }
-
-
-
-
-
-
-
-
-
-/* <div className='modal' style={{ display: "block" }}>
-    <div className='modal-dialog'>
-        <div className='modal-content'>
-            <div className='modal-header'>
-                <h3 className='nodal-title'>Add Product</h3>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => navigate("/products")}></button>
-            </div>
-            <div className='modal-body'>
-                <form>
-                    <label className='form-label text-start'>ProductName</label>
-                    <input className='form-control' />
-
-                    <label className='form-label'>Price</label>
-                    <input className='form-control' />
-
-                    <label className='form-label'>Brand</label>
-                    <input className='form-control' />
-
-                    <label className='form-label'>Category</label>
-                    <input className='form-select' />
-                </form>
-            </div>
-            <div className='modal-footer'>
-                <span className='btn btn-danger'>Close</span>
-                <span className='btn btn-primary'>Save</span>
-            </div>
-        </div>
-    </div>
-</div> */

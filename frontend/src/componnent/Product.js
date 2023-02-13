@@ -6,17 +6,21 @@ import axios from "axios"
 export default function Product() {
     const navigate = useNavigate()
     const init = {
-        name: "",
+        id: 0,
         price: 0,
-        category: "",
-        id: 0
+        productName: "",
+        thumbImage: "",
+        images: "",
+        salePercent: 0,
+        desc: "",
+        createdDate: new Date()
     }
-    const [data, setData] = useState([init])
+    const [data, setData] = useState([init]);
 
 
     useEffect(() => {
         axios
-            .get("http://localhost:3030/api/menu")
+            .get("http://localhost:8000/api/product")
             .then((res) => (setData(res.data.result))
             )
     }, [])
@@ -29,21 +33,29 @@ export default function Product() {
             <div className='table-responsive'>
                 <table>
                     <thead>
-                        <th>id</th>
+                        {/* <th>id</th> */}
                         <th>Name</th>
                         <th>Price</th>
-                        <th>Brand</th>
-                        <th>Category</th>
+                        {/* <th>Brand</th> */}
+                        <th>thumbImage</th>
+                        <th>images</th>
+                        <th>salePercent</th>
+                        <th>desc</th>
+                        <th>createdDate</th>
                         <th></th>
                     </thead>
                     <tbody>
-                        {data.map(({ price, category, id, name, brand }) => (
+                        {data.map(({ price, id, productName, brandName, thumbImage, images, salePercent, desc, createdDate }) => (
                             <tr>
-                                <td>{id}</td>
-                                <td>{name}</td>
+                                {/* <td>{id}</td> */}
+                                <td>{productName}</td>
                                 <td>{price}</td>
-                                <td>{brand}</td>
-                                <td>{category}</td>
+                                {/* <td>{brandName}</td> */}
+                                <td>{thumbImage}</td>
+                                <td>{images}</td>
+                                <td>{salePercent}</td>
+                                <td>{desc}</td>
+                                <td>{createdDate}</td>
                                 <td>
                                     <span className='btn btn-warning'>Edit</span>
                                     <span className='btn btn-danger'>Delete</span>
