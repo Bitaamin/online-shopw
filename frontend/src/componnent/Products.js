@@ -1,5 +1,6 @@
 import React from 'react'
 import Form from "react-bootstrap/Form"
+import Button from 'react-bootstrap/Button'
 import navigate from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -19,7 +20,7 @@ export default function Products() {
                     <div className='modal-content'>
                         <div className='modal-header'>
                             <h3 className='nodal-title'>Add Product</h3>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => navigate("/products")}></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => }></button>
                         </div>
                         <div className='modal-body'>
                             <form>
