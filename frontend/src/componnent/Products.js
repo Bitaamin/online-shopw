@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form"
 import Button from 'react-bootstrap/Button'
 import { useNavigate } from 'react-router-dom'
 import axios from "axios"
+import { apiKey, folderName, cloudName, uploadPreset } from './constant'
 
 
 export default function Products() {
@@ -32,6 +33,8 @@ export default function Products() {
             })
     }
 
+
+
     return (
         <div>
             <Form className='col-md-4'>
@@ -60,17 +63,45 @@ export default function Products() {
                     <Form.Label>Category</Form.Label>
                     <Form.Control value={product.desc} onChange={(e) => setProduct({ ...product, desc: e.target.value })} />
                 </Form.Select>
-                {/* <Form.Group>
-                    <Form.Label>Thumb Image</Form.Label>
-                    <Form.Control type='file' value={product.thumbImage} onChange={(e) => setProduct({ ...product, thumbImage: e.target.files })} />
-                </Form.Group>
                 <Form.Group>
-                    <Form.Label>Images</Form.Label>
-                    <Form.Control type='file' value={product.images} onChange={(e) => setProduct({ ...product, images: e.target.files })} />
-                </Form.Group> */}
+                    <Form.Label>Thumb Image</Form.Label>
+                    <Form.Control type='file' onChange={
+                        (e) => {
+                            console.log(e.target.files);
+                            const url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+                            const formData = new FormData();
+
+                            const file = e.target.files[0];
+                            formData.append("file", file);
+                            formData.append("api_key", apiKey);
+                            formData.append("folder", folderName);
+                            formData.append("upload_preset", uploadPreset);
+
+                            axios
+                                .post(url, formData)
+                                .then((res) => {
+                                    console.log(res);
+                                    setProduct({
+                                        ...product,
+                                        thumbImage: res.data.secure_url
+                                    })
+
+
+                                }).catch((err) => console.log(err));
+                            const arr = [];
+                            arr.push(e.target.files)
+                        }}
+                    />
+                </Form.Group>
+
                 <Button className='btn btn-primary' onClick={onSave}>Save</Button>
-                <Button className='btn btn-danger'>Close</Button>
+                <Button className='btn btn-danger' onClick={() => navigate("/product")}>Close</Button>
             </Form >
         </div >
     )
 }
+
+
+
+
+

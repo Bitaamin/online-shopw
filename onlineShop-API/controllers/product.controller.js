@@ -136,7 +136,7 @@ exports.update = (request, response) => {
         return response.json({ status: false, message: writeErr });
       }
 
-      return response.json({ status: true, message: "Амжилттай засагдлаа" });
+      return response.json({ status: true, message: "Амжилттай засагдлаа", result: updateData });
     });
   });
 };
@@ -161,7 +161,7 @@ exports.delete = (request, response) => {
         return response.json({ status: false, message: writeErr });
       }
 
-      return response.json({ status: true, message: "Амжилттай устгалаа" });
+      return response.json({ status: true, result: deletedData });
     });
   });
 };
