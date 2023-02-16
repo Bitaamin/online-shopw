@@ -42,7 +42,7 @@ export default function Product() {
             .catch((err) => console.log(err));
     };
 
-    const Edit = () => {
+    const Edit = (id) => {
         axios
             .put(`http://localhost:8000/api/product/${id}`)
             .then((res) => {
@@ -59,7 +59,7 @@ export default function Product() {
             </div>
             <div className='table-responsive'>
                 <table>
-                    <thead>
+                    <thead className='headTitle'>
                         {/* <th>id</th> */}
                         <th>Name</th>
                         <th>Price</th>
@@ -73,7 +73,7 @@ export default function Product() {
                     </thead>
                     <tbody>
                         {data.map(({ price, id, productName, thumbImage, images, salePercent, desc, createdDate }) => (
-                            <tr>
+                            <tr className='productList'>
                                 {/* <td>{id}</td> */}
                                 <td>{productName}</td>
                                 <td>{price}{"$"}</td>
@@ -84,7 +84,7 @@ export default function Product() {
                                 <td>{desc}</td>
                                 <td>{createdDate}</td>
                                 <td>
-                                    <span className='btn btn-warning' onClick={() => Edit(id)}>Edit</span>
+                                    <span className='btn btn-warning m-3'  ><a href={`/products/${id}`}>Edit</a></span>
                                     <span className='btn btn-danger' onClick={() => onDelete(id)}>Delete</span>
                                 </td>
                             </tr>
@@ -93,6 +93,6 @@ export default function Product() {
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div >
     )
 }

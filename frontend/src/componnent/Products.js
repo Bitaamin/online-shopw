@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Form from "react-bootstrap/Form"
 import Button from 'react-bootstrap/Button'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from "axios"
 import { apiKey, folderName, cloudName, uploadPreset } from './constant'
 
 
 export default function Products() {
     const navigate = useNavigate()
+    const { id } = useParams();
     const init = {
         id: 0,
         price: 0,
@@ -22,16 +23,47 @@ export default function Products() {
     const [product, setProduct] = useState(init)
 
     const onSave = () => {
+        if (!id) {
+            axios
+                .post("http://localhost:8000/api/product", product)
+                .then((res) => {
+                    if (res.data.result) {
+                        navigate("/product")
+                    } else {
+                        alert("Хадгалахад алдаа гарлаа!")
+                    }
+                })
+        } else {
+            axios
+                .put(`http://localhost:8000/api/product/${id}`, product)
+                .then((res) => {
+                    if (res.data.result) {
+                        navigate("/product")
+                    } else {
+                        alert("Хадгалахад алдаа гарлаа!")
+                    }
+                })
+        }
+    }
+
+    useEffect(() => {
         axios
-            .post("http://localhost:8000/api/product", product)
+            .get(`http://localhost:8000/api/product/${id}`, product)
             .then((res) => {
-                if (res.data.result) {
-                    navigate("/product")
+                if (res.data.status) {
+                    setProduct(res.data.result)
                 } else {
                     alert("Хадгалахад алдаа гарлаа!")
                 }
             })
-    }
+    }, [])
+
+
+
+
+
+
+    // console.log("HAHAHA");
 
 
 

@@ -84,3 +84,12 @@ ul {
   height: 70px;
   align-items: center;
 }
+
+
+.headTitle th {
+  padding: 10px;
+}
+
+.productList td {
+  margin: 10px;
+}
